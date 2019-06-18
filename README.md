@@ -4,7 +4,7 @@ Properties and events will change without major version bump, do not use in prod
 
 # Svelte component to pick a position from a leaflet map.
 
-Created primarily to evaluate the usage of standalone Svelte components in legacy apps. The component presents a Leaflet map on which the user can click to select a position. When the position is updated an `update` event is emitted.
+The component presents a Leaflet map on which the user can click to select a position. When the position is updated an `update` event is emitted. 
 
 ## Usage
 
@@ -23,10 +23,11 @@ console.log('On save!')} />
 
 ### Example usage with Javascript API in legacy app:
 
-Include IIFE build from jsdelivr:
+Include IIFE build and stylesheet from unpkg:
 
-```
-<script src="https://cdn.jsdelivr.net/npm/svelte-pick-a-place/dist/pick-a-place.min.js"></script>
+```html
+<link rel="stylesheet" href="https://unpkg.com/svelte-pick-a-place@latest/dist/pick-a-place.css">
+<script src="https://unpkg.com/svelte-pick-a-place@latest/dist/pick-a-place.min.js"></script>
 ```
 
 Add component:
@@ -40,8 +41,8 @@ let pickAPlace = new PickAPlace({
 });
 
 // Listen to events through component.$on('eventName', callback)
-pickAPlace.$on('update', ({ details }) => {
-  console.log('New position: ', details);
+pickAPlace.$on('update', ({ detail }) => {
+  console.log('New position: ', detail);
 });
 ```
 
