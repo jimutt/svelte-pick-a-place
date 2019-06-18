@@ -35,7 +35,8 @@
   ],
   "files": [
     "src",
-    "dist/index.mjs",
-    "dist/index.js"
+    "dist/pick-a-place.min.js",
+    "dist/pick-a-place.css",
+    "dist/pick-a-place.css.map"
   ]
 }
