@@ -23,7 +23,7 @@
     }
 
     map = leaflet.map(mapElement).setView([lat, lng], zoom);
-    L.tileLayer('https://a.tile.openstreetmap.org/{z}/{x}/{y}.png ', {
+    leaflet.tileLayer('https://a.tile.openstreetmap.org/{z}/{x}/{y}.png ', {
       attribution:
         'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
       maxZoom: 18
