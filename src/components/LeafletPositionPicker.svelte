@@ -56,7 +56,7 @@
   <LeafletMarker {lat} {lng} />
 {/if}
 {#if guideOverlay}
-  <div class="pick-a-place__guide-panel">
+  <div class="pick-a-place__guide-panel" data-testid="guide-overlay">
     {#if lat && lng}
       <span>Latitude: {lat.toFixed(5)} Longitude: {lng.toFixed(5)}</span>
     {:else}
@@ -66,7 +66,7 @@
 {/if}
 
 {#if buttons}
-  <div class="pick-a-place__button-panel">
+  <div class="pick-a-place__button-panel" data-testid="button-overlay">
     <button on:click|stopPropagation={() => dispatch('cancel')}>Cancel</button>
     <button
       disabled={!(lat && lng)}
