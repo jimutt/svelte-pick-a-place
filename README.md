@@ -63,6 +63,21 @@ pickAPlace.$on('update', ({ detail }) => {
 - **save** - Emitted on save button click.
 - **cancel** - Emitted on cancel button click.
 
+## Customize overlay styling
+
+### Top panel / instructions
+The top panel that shows selected latitude/longitude and usage instructions has the class `pick-a-place__guide-panel`.
+
+### Buttons
+The buttons are wrapped in a div with the class `pick-a-place__button-panel`. Their default style which can easily be extended/overridden is:
+```
+.pick-a-place__button-panel > button {
+    font-size: 1.25rem;
+    cursor: pointer;
+    margin: 0 0.5rem;
+  }
+```
+
 ## Credits
 
 The component was originally created from the component project template by Yogev: https://github.com/YogliB/svelte-component-template
