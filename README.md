@@ -6,6 +6,8 @@ Properties and events will change without major version bump, do not use in prod
 
 The component presents a Leaflet map on which the user can click to select a position. When the position is updated an `update` event is emitted. 
 
+**Codepen demo: https://codepen.io/jimutt/pen/XLjaqV**
+
 ## Usage
 
 The component comes with basic styling and is made to fill the parent container. You need to supply a Leaflet instance to the component's `leaflet` prop.
