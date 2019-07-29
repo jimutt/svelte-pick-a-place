@@ -14,35 +14,30 @@ test('renders Leaflet map when an instance is provided', async () => {
   expect(leafletPane.length).toBeGreaterThan(0);
 });
 
-test('throws if no Leaflet instance is provided', async () => {
-  expect(() => render(PickAPlace)).toThrow();
-});
-
-test('shows guide overlay by default', async () => {
+test('shows guide overlay by default', () => {
   const { getByTestId } = render(PickAPlace, { props: { leaflet } });
-
   expect(getByTestId('guide-overlay')).toBeVisible();
 });
 
-test('hides guide overlay if guideOverlay prop set to false', async () => {
+test('hides guide overlay if guideOverlay prop set to false', () => {
   const { queryByTestId } = render(PickAPlace, { props: { leaflet, guideOverlay: false } });
 
   expect(queryByTestId('guide-overlay')).toBeNull();
 });
 
-test('shows button overlay by default', async () => {
+test('shows button overlay by default', () => {
   const { getByTestId } = render(PickAPlace, { props: { leaflet } });
 
   expect(getByTestId('button-overlay')).toBeVisible();
 });
 
-test('hides button overlay if buttons prop set to false', async () => {
+test('hides button overlay if buttons prop set to false', () => {
   const { queryByTestId } = render(PickAPlace, { props: { leaflet, buttons: false } });
 
   expect(queryByTestId('button-overlay')).toBeNull();
 });
 
-test('sets leaflet latitude to value of lat prop', async () => {
+test('sets leaflet latitude to value of lat prop', () => {
   const setViewMock = jest.fn();
   const lMock = { map: () => ({ setView: setViewMock }), tileLayer: () => ({ addTo: jest.fn() }) };
 
@@ -54,7 +49,7 @@ test('sets leaflet latitude to value of lat prop', async () => {
   expect(latArg).toBe(lat);
 });
 
-test('sets leaflet longitude to value of lng prop', async () => {
+test('sets leaflet longitude to value of lng prop', () => {
   const setViewMock = jest.fn();
   const lMock = { map: () => ({ setView: setViewMock }), tileLayer: () => ({ addTo: jest.fn() }) };
 
@@ -66,7 +61,7 @@ test('sets leaflet longitude to value of lng prop', async () => {
   expect(latArg).toBe(lng);
 });
 
-test('sets leaflet zoom to value of zoom prop', async () => {
+test('sets leaflet zoom to value of zoom prop', () => {
   const setViewMock = jest.fn();
   const lMock = { map: () => ({ setView: setViewMock }), tileLayer: () => ({ addTo: jest.fn() }) };
 
@@ -76,4 +71,8 @@ test('sets leaflet zoom to value of zoom prop', async () => {
 
   const latArg = setViewMock.mock.calls[0][1];
   expect(latArg).toBe(zoom);
+});
+
+test('throws if no Leaflet instance is provided', () => {
+  expect(() => render(PickAPlace)).toThrow();
 });
