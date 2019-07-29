@@ -123,7 +123,7 @@
     </button>
     {#if selectionMode === 'polygon' && selectionComplete}
       <button class="pick-a-place__button" type="button" on:click|stopPropagation={resetSelection}>
-        Reset selection
+        Clear selection
       </button>
     {/if}
     <button
