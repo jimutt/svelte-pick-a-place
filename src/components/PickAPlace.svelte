@@ -9,6 +9,7 @@
   export let zoom = 3;
   export let guideOverlay = true;
   export let buttons = true;
+  export let selectionModes = ['point', 'polygon'];
 
   setContext(LEAFLET_CTX, {
     getMap: () => map,
@@ -85,7 +86,13 @@
     <div class="pick-a-place__overlay-content">
       <slot />
       {#if map}
-        <LeafletPositionPicker {guideOverlay} {buttons} on:update on:save on:cancel />
+        <LeafletPositionPicker
+          {guideOverlay}
+          {buttons}
+          {selectionModes}
+          on:update
+          on:save
+          on:cancel />
       {/if}
     </div>
   </div>

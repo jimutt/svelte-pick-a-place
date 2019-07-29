@@ -32,7 +32,7 @@
 
   const closePolygon = () => {
     coordinates = [...coordinates, coordinates[0]];
-    dispatch('complete', [coordinates]);
+    dispatch('complete', coordinates);
   };
 
   onDestroy(() => {

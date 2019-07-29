@@ -5,11 +5,16 @@
   const dispatch = createEventDispatcher();
   const { getMap, getLeaflet } = getContext(LEAFLET_CTX);
 
-  export let mode = 'point';
+  export let mode;
+  export let selectionModes = ['point', 'polygon'];
 
   const setMode = newMode => {
     mode = newMode;
     dispatch('setMode', mode);
+  };
+
+  const editModeEnabled = editMode => {
+    return selectionModes.includes(editMode);
   };
 </script>
 
@@ -45,19 +50,23 @@
 <div class="pick-a-place__drawing-toolbar-wrapper">
   <div class="pick-a-place__drawing-toolbar">
     <h4>Mode</h4>
-    <button
-      data-testid="point-mode-btn"
-      class="pick-a-place__button"
-      class:active={mode === 'point'}
-      on:click|stopPropagation={() => setMode('point')}>
-      Point
-    </button>
-    <button
-      data-testid="polygon-mode-btn"
-      class="pick-a-place__button"
-      class:active={mode === 'polygon'}
-      on:click|stopPropagation={() => setMode('polygon')}>
-      Polygon
-    </button>
+    {#if editModeEnabled('point')}
+      <button
+        data-testid="point-mode-btn"
+        class="pick-a-place__button"
+        class:active={mode === 'point'}
+        on:click|stopPropagation={() => setMode('point')}>
+        Point
+      </button>
+    {/if}
+    {#if editModeEnabled('polygon')}
+      <button
+        data-testid="polygon-mode-btn"
+        class="pick-a-place__button"
+        class:active={mode === 'polygon'}
+        on:click|stopPropagation={() => setMode('polygon')}>
+        Polygon
+      </button>
+    {/if}
   </div>
 </div>

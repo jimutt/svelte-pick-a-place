@@ -1,7 +1,7 @@
 <script>
   import { LEAFLET_CTX } from '../constants';
   import { getContext, tick } from 'svelte';
-  import { createEventDispatcher } from 'svelte';
+  import { createEventDispatcher, onMount } from 'svelte';
   import DrawingToolbar from './drawing/DrawingToolbar.svelte';
   import PointPicker from './PointPicker.svelte';
   import PolygonPicker from './PolygonPicker.svelte';
@@ -11,10 +11,15 @@
   export let placeMarker = true;
   export let guideOverlay = true;
   export let buttons = true;
-  export let selectionMode = 'point';
+  export let selectionModes;
+  export let selectionMode = '';
 
   let position = null;
   let selectionComplete = false;
+
+  onMount(() => {
+    selectionMode = selectionModes[0];
+  });
 
   const setPosition = (pos, selectionCompleted = false) => {
     position = pos;
@@ -84,7 +89,7 @@
   }
 </style>
 
-<DrawingToolbar :mode={selectionMode} on:setMode={handleSetMode} />
+<DrawingToolbar mode={selectionMode} {selectionModes} on:setMode={handleSetMode} />
 
 {#if selectionMode === 'point'}
   <PointPicker on:update={({ detail }) => setPosition(detail, true)} />
