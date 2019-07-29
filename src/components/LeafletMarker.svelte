@@ -1,7 +1,8 @@
 <script>
   import { getContext, onDestroy } from 'svelte';
+  import { LEAFLET_CTX } from '../constants';
 
-  const { getMap, getLeaflet } = getContext('leaflet');
+  const { getMap, getLeaflet } = getContext(LEAFLET_CTX);
 
   export let lat;
   export let lng;

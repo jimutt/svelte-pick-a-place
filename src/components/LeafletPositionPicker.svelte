@@ -1,5 +1,6 @@
 <script>
   import LeafletMarker from './LeafletMarker.svelte';
+  import { LEAFLET_CTX } from '../constants';
   import { getContext } from 'svelte';
   import { createEventDispatcher } from 'svelte';
 
@@ -11,7 +12,7 @@
   let lng;
 
   const dispatch = createEventDispatcher();
-  const { getMap } = getContext('leaflet');
+  const { getMap } = getContext(LEAFLET_CTX);
 
   let map = getMap();
   map.on('click', e => {

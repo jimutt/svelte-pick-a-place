@@ -1,5 +1,6 @@
 <script>
   import { onMount, setContext } from 'svelte';
+  import { LEAFLET_CTX } from '../constants';
   import LeafletPositionPicker from './LeafletPositionPicker.svelte';
 
   export let leaflet;
@@ -9,7 +10,7 @@
   export let guideOverlay = true;
   export let buttons = true;
 
-  setContext('leaflet', {
+  setContext(LEAFLET_CTX, {
     getMap: () => map,
     getLeaflet: () => leaflet
   });
@@ -23,11 +24,13 @@
     }
 
     map = leaflet.map(mapElement).setView([lat, lng], zoom);
-    leaflet.tileLayer('https://a.tile.openstreetmap.org/{z}/{x}/{y}.png ', {
-      attribution:
-        'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
-      maxZoom: 18
-    }).addTo(map);
+    leaflet
+      .tileLayer('https://a.tile.openstreetmap.org/{z}/{x}/{y}.png ', {
+        attribution:
+          'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+        maxZoom: 18
+      })
+      .addTo(map);
   });
 </script>
 
