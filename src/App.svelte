@@ -6,11 +6,15 @@
   .map-container {
     height: 800px;
   }
+
+  :global(html, body) {
+    font-size: 14px;
+  }
 </style>
 
 <div class="map-container">
   <PickAPlace
     leaflet={window.L}
     on:update={() => console.log('Update!')}
-    on:save={() => console.log('On save!')} />
+    on:save={e => console.log('On save!', e.detail)} />
 </div>
