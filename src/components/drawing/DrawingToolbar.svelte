@@ -54,6 +54,7 @@
       {#if editModeEnabled('point')}
         <button
           data-testid="point-mode-btn"
+          type="button"
           class="pick-a-place__button"
           class:active={mode === 'point'}
           on:click|stopPropagation={() => setMode('point')}>
@@ -63,6 +64,7 @@
       {#if editModeEnabled('polygon')}
         <button
           data-testid="polygon-mode-btn"
+          type="button"
           class="pick-a-place__button"
           class:active={mode === 'polygon'}
           on:click|stopPropagation={() => setMode('polygon')}>
