@@ -1,10 +1,10 @@
 # WORK IN PROGRESS
 
-Properties and events will change without major version bump, do not use in production.
+Functionality, properties and events will change without major version bump, do not use in production.
 
 # Svelte component to pick a position from a leaflet map.
 
-The component presents a Leaflet map on which the user can click to select a position. When the position is updated an `update` event is emitted. 
+The component presents a Leaflet map on which the user can click to select a position or an area (through drawing a polygon). When the selection is updated an `update` event is emitted.
 
 **Codepen demo: https://codepen.io/jimutt/pen/XLjaqV**
 
@@ -28,7 +28,7 @@ console.log('On save!')} />
 Include IIFE build and stylesheet from unpkg:
 
 ```html
-<link rel="stylesheet" href="https://unpkg.com/svelte-pick-a-place@latest/dist/pick-a-place.css">
+<link rel="stylesheet" href="https://unpkg.com/svelte-pick-a-place@latest/dist/pick-a-place.css" />
 <script src="https://unpkg.com/svelte-pick-a-place@latest/dist/pick-a-place.min.js"></script>
 ```
 
@@ -56,27 +56,13 @@ pickAPlace.$on('update', ({ detail }) => {
 - **zoom** - Map zoom level. Set to 3 by default.
 - **guideOverlay** - Show text overlay with instructions and picked lat/lng. True by default.
 - **buttons** - Show cancel & save buttons. True by default.
+- **selectionModes** - Array with enabled selection modes. Default: `['point', 'polygon']`
 
 ## Events
 
-- **update** - Emitted on new selected location. `details` property contains a Leaflet lat/lng object.
-- **save** - Emitted on save button click.
+- **update** - Emitted on new selected location. The `detail` property of the event object contains the selection. If selection mode is "point" a Leaflet lat/lng object is returned. If selection mode is "polygon" the update event is emitted for each added point, the `detail` property will contain array with all lat/lng points of the polygon.
+- **save** - Emitted on save button click. The `detail` property of the event object contains the selection. If selection mode is "point" a Leaflet lat/lng object is returned. If selection mode is "polygon" an array consisting of lat/lng points for all polygon coordinates is returned.
 - **cancel** - Emitted on cancel button click.
-
-## Customize overlay styling
-
-### Top panel / instructions
-The top panel that shows selected latitude/longitude and usage instructions has the class `pick-a-place__guide-panel`.
-
-### Buttons
-The buttons are wrapped in a div with the class `pick-a-place__button-panel`. Their default style which can easily be extended/overridden is:
-```
-.pick-a-place__button-panel > button {
-    font-size: 1.25rem;
-    cursor: pointer;
-    margin: 0 0.5rem;
-  }
-```
 
 ## Credits
 
