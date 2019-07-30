@@ -2,7 +2,7 @@
 
 Functionality, properties and events will change without major version bump, do not use in production.
 
-# Svelte component to pick a position from a leaflet map.
+# Svelte component for position and area selection with Leaflet.
 
 The component presents a Leaflet map on which the user can click to select a position or an area (through drawing a polygon). When the selection is updated an `update` event is emitted.
 
