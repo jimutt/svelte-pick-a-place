@@ -60,7 +60,7 @@ pickAPlace.$on('update', ({ detail }) => {
 
 ## Events
 
-- **update** - Emitted on new selected location. `detail` property contains the selection. If selection mode is "point" a Leaflet lat/lng object is returned. If selection mode is "polygon" the update event is emitted for each added point, the `detail` property will contain array with all lat/lng points of the polygon.
+- **update** - Emitted on new selected location. The `detail` property of the event object contains the selection. If selection mode is "point" a Leaflet lat/lng object is returned. If selection mode is "polygon" the update event is emitted for each added point, the `detail` property will contain array with all lat/lng points of the polygon.
 - **save** - Emitted on save button click. The `detail` property of the event object contains the selection. If selection mode is "point" a Leaflet lat/lng object is returned. If selection mode is "polygon" an array consisting of lat/lng points for all polygon coordinates is returned.
 - **cancel** - Emitted on cancel button click.
 
