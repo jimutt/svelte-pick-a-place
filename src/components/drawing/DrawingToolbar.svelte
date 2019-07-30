@@ -48,25 +48,27 @@
 </style>
 
 <div class="pick-a-place__drawing-toolbar-wrapper">
-  <div class="pick-a-place__drawing-toolbar">
-    <h4>Mode</h4>
-    {#if editModeEnabled('point')}
-      <button
-        data-testid="point-mode-btn"
-        class="pick-a-place__button"
-        class:active={mode === 'point'}
-        on:click|stopPropagation={() => setMode('point')}>
-        Point
-      </button>
-    {/if}
-    {#if editModeEnabled('polygon')}
-      <button
-        data-testid="polygon-mode-btn"
-        class="pick-a-place__button"
-        class:active={mode === 'polygon'}
-        on:click|stopPropagation={() => setMode('polygon')}>
-        Polygon
-      </button>
-    {/if}
-  </div>
+  {#if selectionModes.length > 1}
+    <div class="pick-a-place__drawing-toolbar">
+      <h4>Mode</h4>
+      {#if editModeEnabled('point')}
+        <button
+          data-testid="point-mode-btn"
+          class="pick-a-place__button"
+          class:active={mode === 'point'}
+          on:click|stopPropagation={() => setMode('point')}>
+          Point
+        </button>
+      {/if}
+      {#if editModeEnabled('polygon')}
+        <button
+          data-testid="polygon-mode-btn"
+          class="pick-a-place__button"
+          class:active={mode === 'polygon'}
+          on:click|stopPropagation={() => setMode('polygon')}>
+          Polygon
+        </button>
+      {/if}
+    </div>
+  {/if}
 </div>
