@@ -36,7 +36,7 @@
     "dev": "run-p start:dev autobuild",
     "start": "sirv public",
     "start:dev": "sirv public --dev",
-    "test": "jest --no-cache --watchAll",
+    "test": "jest --no-cache",
     "prepublishOnly": "npm run build"
   },
   "keywords": [
