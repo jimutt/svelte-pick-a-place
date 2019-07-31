@@ -4,6 +4,7 @@ import commonjs from 'rollup-plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import pkg from './package.json';
+import babel from 'rollup-plugin-babel';
 
 const production = !process.env.ROLLUP_WATCH;
 const name = pkg.name
@@ -41,6 +42,22 @@ export default {
 
     !production && livereload('public'),
 
+    babel({
+      extensions: ['.js', '.mjs', '.html', '.svelte'],
+      runtimeHelpers: true,
+      exclude: ['node_modules/@babel/**', 'node_modules/core-js/**'],
+      presets: [
+        [
+          '@babel/preset-env',
+          {
+            targets: '> 1.5%, IE 11, not dead',
+            useBuiltIns: 'usage',
+            corejs: 3
+          }
+        ]
+      ],
+      plugins: []
+    }),
     production && terser()
   ],
   watch: {
