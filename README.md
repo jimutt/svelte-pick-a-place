@@ -8,7 +8,8 @@ Functionality, properties and events will change without major version bump, do 
 
 The component presents a Leaflet map on which the user can click to select a position or an area (through drawing a polygon). When the selection is updated an `update` event is emitted.
 
-**Codepen demo: https://codepen.io/jimutt/pen/XLjaqV**
+**Codepen demo JS API: https://codepen.io/jimutt/pen/XLjaqV**
+**Codepen demo Bootstrap 3 form + modal: https://codepen.io/jimutt/pen/ZgaYBP?editors=1010**
 
 ## Usage
 
