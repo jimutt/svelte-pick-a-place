@@ -29,14 +29,14 @@ console.log('On save!')} />
 
 ### Example usage with Javascript API in legacy app:
 
-Include IIFE build and stylesheet from unpkg, use the "\_legacy" suffixed JS file if you need IE11 support and don't mind the larger file size:
+Include IIFE build and stylesheet from unpkg, use the "-legacy" suffixed JS file if you need IE11 support and don't mind the larger file size:
 
 ```html
 <link rel="stylesheet" href="https://unpkg.com/svelte-pick-a-place@latest/dist/pick-a-place.css" />
 <script src="https://unpkg.com/svelte-pick-a-place@latest/dist/pick-a-place.min.js"></script>
 
 <!-- Or use build with IE11 support: -->
-<script src="https://unpkg.com/svelte-pick-a-place@latest/dist/pick-a-place_legacy.min.js"></script>
+<script src="https://unpkg.com/svelte-pick-a-place@latest/dist/pick-a-place-legacy.min.js"></script>
 ```
 
 Add component:

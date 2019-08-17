@@ -17,7 +17,7 @@ const name = pkg.name
 
 const prodOutput = [];
 if (ie11Build) {
-  prodOutput.push({ file: 'dist/pick-a-place_legacy.min.js', format: 'iife', name });
+  prodOutput.push({ file: 'dist/pick-a-place-legacy.min.js', format: 'iife', name });
 } else {
   prodOutput.push(
     { file: 'dist/index.min.mjs', format: 'es' },
