@@ -49,6 +49,7 @@
   "files": [
     "src",
     "dist/pick-a-place.min.js",
+    "dist/pick-a-place-legacy.min.js",
     "dist/pick-a-place.css",
     "dist/pick-a-place.css.map"
   ]
