@@ -1,8 +1,11 @@
 [![npm version](https://badge.fury.io/js/svelte-pick-a-place.png)](https://badge.fury.io/js/svelte-pick-a-place)
 
-# WORK IN PROGRESS
+## WORK IN PROGRESS
 
 Functionality, properties and events will change without major version bump, do not use in production.
+
+Known upcoming changes:
+- Format of return data from events. GeoJSON objects will be returned instead of Leaflet lat/lng objects. 
 
 # Svelte component for position and area selection with Leaflet.
 
