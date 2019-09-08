@@ -15,7 +15,7 @@
 <div class="map-container">
   <PickAPlace
     leaflet={window.L}
-    on:update={() => console.log('Update!')}
+    on:update={e => console.log('Update!', e.detail)}
     on:save={e => console.log('On save!', e.detail)}
     selectionModes={['polygon', 'point']} />
 </div>
