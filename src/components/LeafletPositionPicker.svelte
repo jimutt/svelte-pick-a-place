@@ -5,6 +5,8 @@
   import DrawingToolbar from './drawing/DrawingToolbar.svelte';
   import PointPicker from './PointPicker.svelte';
   import PolygonPicker from './PolygonPicker.svelte';
+  import { leafletGeometryToGeoJSON } from '../utils/geojson';
+  import latLngEquals from '../utils/latLngEquals';
 
   const dispatch = createEventDispatcher();
 
@@ -21,10 +23,20 @@
     selectionMode = selectionModes[0];
   });
 
+  function isPointOrPolygon(leafletPosition) {
+    return (
+      !Array.isArray(leafletPosition) ||
+      (leafletPosition.length > 2 &&
+        latLngEquals(leafletPosition[0], leafletPosition[leafletPosition.length - 1]))
+    );
+  }
+
   const setPosition = (pos, selectionCompleted = false) => {
-    position = pos;
     selectionComplete = selectionCompleted;
-    dispatch('update', position);
+    position = pos;
+    if (isPointOrPolygon(position)) {
+      dispatch('update', leafletGeometryToGeoJSON(position));
+    }
   };
 
   $: polygonInstructionText = computePolygonText(position);
@@ -130,7 +142,7 @@
       class="pick-a-place__button"
       type="button"
       disabled={!selectionComplete}
-      on:click|stopPropagation={() => dispatch('save', position)}>
+      on:click|stopPropagation={() => dispatch('save', leafletGeometryToGeoJSON(position))}>
       Use selection
     </button>
   </div>
