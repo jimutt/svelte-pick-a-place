@@ -1,15 +1,8 @@
 [![npm version](https://badge.fury.io/js/svelte-pick-a-place.png)](https://badge.fury.io/js/svelte-pick-a-place)
 
-## WORK IN PROGRESS
-
-Functionality, properties and events will change without major version bump, do not use in production.
-
-Known upcoming changes:
-- Format of return data from events. GeoJSON objects will be returned instead of Leaflet lat/lng objects. 
-
 # Svelte component for position and area selection with Leaflet.
 
-The component presents a Leaflet map on which the user can click to select a position or an area (through drawing a polygon). When the selection is updated an `update` event is emitted.
+The component presents a Leaflet map on which the user can click to select a position or an area (through drawing a polygon). `update` and `save` events are emitted with the selected geometry in GeoJSON format.
 
 **Codepen demo JS API: https://codepen.io/jimutt/pen/XLjaqV**
 
@@ -23,6 +16,7 @@ The component comes with basic styling and is made to fill the parent container.
 
 ```html
 <script>
+  import leaflet from 'leaflet';
   import PickAPlace from 'svelte-pick-a-place';
 </script>
 
@@ -32,7 +26,7 @@ console.log('On save!')} />
 
 ### Example usage with Javascript API in legacy app:
 
-Include IIFE build and stylesheet from unpkg, use the "-legacy" suffixed JS file if you need IE11 support and don't mind the larger file size:
+Include IIFE build and stylesheet from unpkg, use the "-legacy" suffixed JS file if you need IE11 support and don't mind the much larger file size:
 
 ```html
 <link rel="stylesheet" href="https://unpkg.com/svelte-pick-a-place@latest/dist/pick-a-place.css" />
@@ -70,10 +64,15 @@ pickAPlace.$on('update', ({ detail }) => {
 
 ## Events
 
-- **update** - Emitted on new selected location. The `detail` property of the event object contains the selection. If selection mode is "point" a Leaflet lat/lng object is returned. If selection mode is "polygon" the update event is emitted for each added point, the `detail` property will contain array with all lat/lng points of the polygon.
-- **save** - Emitted on save button click. The `detail` property of the event object contains the selection. If selection mode is "point" a Leaflet lat/lng object is returned. If selection mode is "polygon" an array consisting of lat/lng points for all polygon coordinates is returned.
+- **update** - Emitted on new selected location. The `detail` property of the event object contains the selection. If selection mode is "point" a GeoJSON feature with Point geometry is returned. If selection mode is "polygon" the update event is emitted when she polygon is finished/closed, the `detail` property will contain a GeoJSON feature with Polygon geometry.
+- **save** - Emitted on save button click. The `detail` property of the event object contains the selection. If selection mode is "point" a GeoJSON feature with Point geometry is returned. If selection mode is "polygon" the `detail` property will contain a GeoJSON feature with Polygon geometry.
 - **cancel** - Emitted on cancel button click.
 
-## Credits
+## TODO
+
+- More tests, test coverage is extremely poor at the moment.
+- Well-written docs.
+
+### Credits
 
 The component was originally created from the component project template by Yogev: https://github.com/YogliB/svelte-component-template
