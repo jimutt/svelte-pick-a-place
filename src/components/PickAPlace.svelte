@@ -10,6 +10,7 @@
   export let guideOverlay = true;
   export let buttons = true;
   export let selectionModes = ['point', 'polygon'];
+  export let selection = null;
 
   setContext(LEAFLET_CTX, {
     getMap: () => map,
@@ -18,6 +19,21 @@
 
   let mapElement;
   let map;
+  let selectionMode = null;
+
+  if (selection != null && typeof selection !== 'object') {
+    throw new Error('The value of "selection" must be an object');
+  }
+
+  if (selection != null) {
+    const type = selection.geometry.type.toLowerCase();
+    if (!selectionModes.includes(type)) {
+      throw new Error(
+        `The provided default selection object has a geometry of type ${0}, which is not included in the allowed selection modes`
+      );
+    }
+    selectionMode = type;
+  }
 
   onMount(() => {
     if (leaflet == null) {
@@ -89,7 +105,9 @@
         <LeafletPositionPicker
           {guideOverlay}
           {buttons}
+          {selection}
           {selectionModes}
+          {selectionMode}
           on:update
           on:save
           on:cancel />
