@@ -22,5 +22,10 @@
 </style>
 
 <div class="map-container">
-  <PickAPlace {leaflet} on:update={handleUpdate} on:cancel={handleCancel} on:save={handleSave} />
+  <PickAPlace
+    {leaflet}
+    on:update={handleUpdate}
+    on:cancel={handleCancel}
+    on:save={handleSave}
+    selection={{ type: 'Feature', geometry: { type: 'Point', coordinates: [4.570312500000001, 46.07323062540835] } }} />
 </div>

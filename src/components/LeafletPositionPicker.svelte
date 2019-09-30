@@ -14,14 +14,13 @@
   export let guideOverlay = true;
   export let buttons = true;
   export let selectionModes;
-  export let selectionMode = '';
+  export let selectionMode = null;
+  export let selection = null;
 
-  let position = null;
+  let position = selection;
   let selectionComplete = false;
 
-  onMount(() => {
-    selectionMode = selectionModes[0];
-  });
+  if (selectionMode == null) selectionMode = selectionModes[0];
 
   function isPointOrPolygon(leafletPosition) {
     return (
@@ -54,6 +53,7 @@
   };
 
   const handleSetMode = ({ detail }) => {
+    position = null;
     selectionComplete = false;
     selectionMode = detail;
   };
@@ -104,9 +104,10 @@
 <DrawingToolbar mode={selectionMode} {selectionModes} on:setMode={handleSetMode} />
 
 {#if selectionMode === 'point'}
-  <PointPicker on:update={({ detail }) => setPosition(detail, true)} />
+  <PointPicker selection={position} on:update={({ detail }) => setPosition(detail, true)} />
 {:else if selectionMode === 'polygon'}
   <PolygonPicker
+    selection={position}
     on:update={({ detail }) => setPosition(detail)}
     on:complete={({ detail }) => completePolygon(detail)} />
 {/if}

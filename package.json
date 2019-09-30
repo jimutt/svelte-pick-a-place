@@ -30,7 +30,7 @@
     "rollup-plugin-svelte": "^5.1.0",
     "rollup-plugin-terser": "^5.1.1",
     "sirv-cli": "^0.4.4",
-    "svelte": "^3.6.9"
+    "svelte": "^3.12.1"
   },
   "scripts": {
     "build": "run-s build:*",
@@ -44,7 +44,10 @@
     "prepublishOnly": "npm run build"
   },
   "keywords": [
-    "svelte"
+    "svelte",
+    "location picker",
+    "picker",
+    "area picker"
   ],
   "files": [
     "src",
