@@ -14,19 +14,21 @@
 
   onMount(() => {
     if (selection != null && selection.geometry.type === 'Point') {
-      lng = selection.geometry.coordinates[0];
-      lat = selection.geometry.coordinates[1];
+      setLngLat(selection.geometry.coordinates[0], selection.geometry.coordinates[1]);
     }
   });
 
+  const setLngLat = (longitude, latitude) => {
+    lng = longitude;
+    lat = latitude;
+    dispatch('update', { lng, lat });
+  };
+
   const onMapClick = e => {
-    lat = e.latlng.lat;
-    lng = e.latlng.lng;
-    dispatch('update', e.latlng);
+    setLngLat(e.latlng.lng, e.latlng.lat);
   };
 
   map.on('click', onMapClick);
-
   onDestroy(() => map.off('click', onMapClick));
 </script>
 
