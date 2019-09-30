@@ -61,6 +61,7 @@ pickAPlace.$on('update', ({ detail }) => {
 - **guideOverlay** - Show text overlay with instructions and picked lat/lng. True by default.
 - **buttons** - Show cancel & save buttons. True by default.
 - **selectionModes** - Array with enabled selection modes. Default: `['point', 'polygon']`
+- **selection** - Default position/area, supports a GeoJSON feature with a geometry object of type `Point` or type `Polygon`
 
 ## Events
 

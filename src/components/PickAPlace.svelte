@@ -29,7 +29,7 @@
     const type = selection.geometry.type.toLowerCase();
     if (!selectionModes.includes(type)) {
       throw new Error(
-        `The provided default selection object has a geometry of type ${0}, which is not included in the allowed selection modes`
+        `The provided default selection object has a geometry of type ${type}, which is not included in the allowed selection modes`
       );
     }
     selectionMode = type;
